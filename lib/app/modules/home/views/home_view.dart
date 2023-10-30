@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
             width: Get.width,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                stops: [0.15, 1],
+                stops: const [0.15, 1],
                 colors: [
                   f1RedColor,
                   Colors.white,
@@ -52,7 +52,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                Column(
+                const Column(
                   children: [],
                 )
               ],
@@ -67,7 +67,7 @@ class HomeView extends GetView<HomeController> {
     return Container(
       height: 110,
       decoration: BoxDecoration(
-        color: Color(0xFF171717),
+        color: const Color(0xFF171717),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -76,9 +76,9 @@ class HomeView extends GetView<HomeController> {
           Expanded(
               flex: 1,
               child: Container(
-                margin: EdgeInsets.all(16),
+                margin: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Color(0xFF1F754C),
+                  color: const Color(0xFF1F754C),
                   borderRadius: BorderRadius.circular(8),
                 ),
               ))
