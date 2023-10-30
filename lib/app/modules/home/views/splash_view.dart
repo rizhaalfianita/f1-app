@@ -1,4 +1,3 @@
-import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ class SplashView extends GetView {
   @override
   Widget build(BuildContext context) {
     // Delay for 5 seconds and then navigate to the home screen
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Get.offNamed(
           '/home'); // Navigate to the home screen using GetX navigation
     });
@@ -18,7 +17,7 @@ class SplashView extends GetView {
       backgroundColor: Colors.white,
       body: Center(
         child: Shimmer(
-          duration: const Duration(seconds: 5),
+          duration: const Duration(seconds: 2),
           colorOpacity: 0.5,
           child: Image.asset(
             "assets/images/f1_logo.png",

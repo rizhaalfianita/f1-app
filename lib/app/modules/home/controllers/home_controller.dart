@@ -1,23 +1,40 @@
+import 'package:f1_app/app/data/model/F1AllSeason_model.dart';
+import 'package:f1_app/app/data/model/f1season_model.dart';
+import 'package:f1_app/app/data/service/f1scrapperapi_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  var allSeasons = <F1AllSeason>[].obs;
+  var season = <String, List<F1Season>?>{}.obs;
+  var isLoading = true.obs;
+  var isLoadingSeason = <String, bool>{}.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
+    fetchF1AllSeason();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchF1AllSeason() async {
+    try {
+      isLoading(true);
+      var allSeasons = await F1Service.getAllSeason();
+      if (allSeasons != null) {
+        this.allSeasons.value = allSeasons;
+      }
+    } finally {
+      isLoading(false);
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void fetchF1Season(String year) async {
+    try {
+      var season = await F1Service.getSeason(year);
+      if (season != null) {
+        this.season[year] = season;
+      }
+    } finally {
+      isLoading(false);
+    }
   }
-
-  void increment() => count.value++;
 }
