@@ -2,7 +2,7 @@ import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
+import 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -52,9 +52,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                const Column(
-                  children: [],
-                )
+                raceResults()
               ],
             ),
           ),
@@ -85,5 +83,60 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
     );
+  }
+
+  Widget raceResults() {
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return Center(
+          child: CircularProgressIndicator(
+            color: f1RedColor,
+            strokeWidth: 5,
+          ),
+        );
+      } else {
+        return Column(
+          children: [
+            Row(
+              children: [
+                Text(controller.allSeasons.value[0].year!),
+              ],
+            ),
+            controller.season.value[controller.selectedSeason.value] == null
+                ? CircularProgressIndicator(
+                    color: f1RedColor,
+                    strokeWidth: 5,
+                  )
+                : ScrollableListTabScroller(
+                    itemCount: controller
+                        .season.value[controller.selectedSeason.value]!.length,
+                    tabBuilder: (context, int index, bool active) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        controller
+                            .season
+                            .value[controller.selectedSeason.value]![index]
+                            .country!,
+                        style: !active
+                            ? null
+                            : TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    itemBuilder: (BuildContext context, int index) => Column(
+                      children: [
+                        Text(controller
+                            .season
+                            .value[controller.selectedSeason.value]![index]
+                            .country!),
+                      ],
+                    ),
+                  )
+          ],
+        );
+      }
+    });
   }
 }
