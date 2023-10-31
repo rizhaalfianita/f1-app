@@ -3,7 +3,6 @@ import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -57,6 +56,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
+                raceResults()
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

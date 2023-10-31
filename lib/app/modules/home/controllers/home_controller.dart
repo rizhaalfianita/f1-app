@@ -4,26 +4,30 @@ import 'package:f1_app/app/data/services/f1scrapperapi_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var allSeasons = <F1AllSeason>[].obs;
-  var season = <String, List<F1Season>?>{}.obs;
-  var isLoading = true.obs;
-  var isLoadingSeason = <String, bool>{}.obs;
+  final allSeasons = <F1AllSeason>[].obs;
+  final season = <String, List<F1Season>?>{}.obs;
+  final isLoading = true.obs;
+  final isLoadingSeason = <String, bool>{}.obs;
+
+  final selectedSeason = "".obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     fetchF1AllSeason();
+    selectedSeason.value = "2023";
     super.onInit();
   }
 
   void fetchF1AllSeason() async {
     try {
-      isLoading(true);
-      var allSeasons = await F1Service.getAllSeason();
-      if (allSeasons != null) {
-        this.allSeasons.value = allSeasons;
+      isLoading.value = true;
+      var res = await F1Service.getAllSeason();
+      if (res != null) {
+        allSeasons.value = res;
+        print(allSeasons.toString());
       }
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 
