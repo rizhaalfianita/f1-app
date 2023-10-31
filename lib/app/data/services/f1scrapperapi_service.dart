@@ -1,8 +1,8 @@
 // create F1 api service
 
 import 'package:dio/dio.dart';
-import 'package:f1_app/app/data/model/F1AllSeason_model.dart';
-import 'package:f1_app/app/data/model/f1season_model.dart';
+import 'package:f1_app/app/data/models/F1AllSeason_model.dart';
+import 'package:f1_app/app/data/models/f1season_model.dart';
 
 class F1Service {
   static var baseUrl = "https://f1-scrapper-api.onrender.com/";

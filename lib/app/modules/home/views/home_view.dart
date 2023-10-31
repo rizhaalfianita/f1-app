@@ -1,3 +1,4 @@
+import 'package:f1_app/app/widgets/event_tracker.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class HomeView extends GetView<HomeController> {
                 stops: const [0.15, 1],
                 colors: [
                   f1RedColor,
-                  Colors.white,
+                  white,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -32,17 +33,21 @@ class HomeView extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 10,
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Image.asset(
-                    "assets/images/f1_logo.png",
-                    height: 25,
-                    color: Colors.white,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      "assets/images/f1_logo.png",
+                      height: 20,
+                      color: white,
+                    ),
+                    Icon(Icons.notifications, color: white),
+                  ],
                 ),
                 const SizedBox(
                   height: 30,
@@ -52,37 +57,25 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                const Column(
-                  children: [],
-                )
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "2023",
+                      style: customTextStyle(40, softBlack, FontWeight.bold),
+                    ),
+                    Icon(
+                      Icons.arrow_drop_down,
+                      color: f1RedColor,
+                      size: 30,
+                    )
+                  ],
+                ),
+                
               ],
             ),
           ),
         ]),
-      ),
-    );
-  }
-
-  Container eventTracker() {
-    return Container(
-      height: 110,
-      decoration: BoxDecoration(
-        color: const Color(0xFF171717),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Expanded(flex: 1, child: Container()),
-          Expanded(
-              flex: 1,
-              child: Container(
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1F754C),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ))
-        ],
       ),
     );
   }

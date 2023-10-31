@@ -1,6 +1,6 @@
-import 'package:f1_app/app/data/model/F1AllSeason_model.dart';
-import 'package:f1_app/app/data/model/f1season_model.dart';
-import 'package:f1_app/app/data/service/f1scrapperapi_service.dart';
+import 'package:f1_app/app/data/models/F1AllSeason_model.dart';
+import 'package:f1_app/app/data/models/f1season_model.dart';
+import 'package:f1_app/app/data/services/f1scrapperapi_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
