@@ -17,20 +17,15 @@ Widget eventTracker() {
           flex: 1,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Upcoming",
                 style: bodyMedium(white, FontWeight.bold),
               ),
-              const SizedBox(
-                height: 8,
-              ),
               Text(
                 "28-30 October",
                 style: bodySmall(white, FontWeight.normal),
-              ),
-              const SizedBox(
-                height: 8,
               ),
               Row(
                 children: [
