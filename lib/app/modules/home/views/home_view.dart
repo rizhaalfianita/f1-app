@@ -1,4 +1,5 @@
 import 'package:f1_app/app/widgets/event_tracker.dart';
+import 'package:f1_app/app/widgets/race_result_item.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,10 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -51,12 +54,10 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                // widget black container with rounded corners
                 eventTracker(),
                 const SizedBox(
                   height: 30,
                 ),
-                raceResults()
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -71,7 +72,34 @@ class HomeView extends GetView<HomeController> {
                     )
                   ],
                 ),
-                
+                const SizedBox(height: 10),
+                DefaultTabController(
+                    length: controller.dummyF1Season.length,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          labelPadding: const EdgeInsets.only(right: 30.0),
+                          labelColor: f1RedColor,
+                          unselectedLabelColor: extraLightF1Red,
+                          indicatorSize: TabBarIndicatorSize.label,
+                          indicatorColor: f1RedColor,
+                          tabs: controller.dummyF1Season.map((f1) {
+                            return Tab(
+                              text: f1.country,
+                            );
+                          }).toList(),
+                        ),
+                        SizedBox(
+                          height: size.height * 2.7,
+                          child: TabBarView(
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: controller.dummyF1Season.map((f1) {
+                                return raceResultItem(f1);
+                              }).toList()),
+                        )
+                      ],
+                    )),
               ],
             ),
           ),
@@ -79,4 +107,59 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
+
+  // Widget raceResults() {
+  //   return Obx(() {
+  //     if (controller.isLoading.value) {
+  //       return Center(
+  //         child: CircularProgressIndicator(
+  //           color: f1RedColor,
+  //           strokeWidth: 5,
+  //         ),
+  //       );
+  //     } else {
+  //       return Column(
+  //         children: [
+  //           Row(
+  //             children: [
+  //               Text(controller.allSeasons.value[0].year!),
+  //             ],
+  //           ),
+  //           controller.season.value[controller.selectedSeason.value] == null
+  //               ? CircularProgressIndicator(
+  //                   color: f1RedColor,
+  //                   strokeWidth: 5,
+  //                 )
+  //               : ScrollableListTabScroller(
+  //                   itemCount: controller
+  //                       .season.value[controller.selectedSeason.value]!.length,
+  //                   tabBuilder: (context, int index, bool active) => Padding(
+  //                     padding: const EdgeInsets.all(8.0),
+  //                     child: Text(
+  //                       controller
+  //                           .season
+  //                           .value[controller.selectedSeason.value]![index]
+  //                           .country!,
+  //                       style: !active
+  //                           ? null
+  //                           : TextStyle(
+  //                               color: Colors.white,
+  //                               fontSize: 18,
+  //                               fontWeight: FontWeight.bold),
+  //                     ),
+  //                   ),
+  //                   itemBuilder: (BuildContext context, int index) => Column(
+  //                     children: [
+  //                       Text(controller
+  //                           .season
+  //                           .value[controller.selectedSeason.value]![index]
+  //                           .country!),
+  //                     ],
+  //                   ),
+  //                 )
+  //         ],
+  //       );
+  //     }
+  //   });
+  // }
 }

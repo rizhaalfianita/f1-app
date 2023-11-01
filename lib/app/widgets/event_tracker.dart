@@ -1,5 +1,6 @@
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget eventTracker() {
   return Container(
@@ -19,7 +20,7 @@ Widget eventTracker() {
             children: [
               Text(
                 "Upcoming",
-                style: bodySmall(white, FontWeight.bold),
+                style: bodyMedium(white, FontWeight.bold),
               ),
               const SizedBox(
                 height: 8,
@@ -120,14 +121,15 @@ Widget eventTrackerCount(String number, label) {
     children: [
       Text(
         number,
-        style: customTextStyle(18, white, FontWeight.normal),
+        style: customTextStyle(18, white, FontWeight.bold),
       ),
       const SizedBox(
         height: 3,
       ),
       Text(
         label,
-        style: customTextStyle(8, white, FontWeight.normal),
+        style: GoogleFonts.titilliumWeb(
+            fontSize: 8, color: white, fontWeight: FontWeight.bold),
       )
     ],
   );
