@@ -67,13 +67,15 @@ class HomeView extends GetView<HomeController> {
                       ))
                     : dropdownSeason(),
                 const SizedBox(height: 10),
-                controller.season.value[controller.selectedSeason.value] == null
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: f1RedColor,
-                        ),
-                      )
-                    : raceResult(size),
+                Obx(() =>
+                    controller.season.value[controller.selectedSeason.value] ==
+                            null
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: f1RedColor,
+                            ),
+                          )
+                        : raceResult(size))
               ],
             ),
           ),
@@ -117,13 +119,37 @@ class HomeView extends GetView<HomeController> {
 
   Obx dropdownSeason() {
     return Obx(() => CoolDropdown(
-        dropdownList: controller.allSeasons
-            .map((e) => CoolDropdownItem(label: e.year!, value: e.year!))
-            .toList(),
-        controller: controller.dropdownController.value,
-        onChange: (value) {
-          controller.fetchF1Season(value);
-          controller.selectedSeason.value = value;
-        }));
+          dropdownList: controller.allSeasons
+              .map((e) => CoolDropdownItem(label: e.year!, value: e.year!))
+              .toList(),
+          controller: controller.dropdownController.value,
+          onChange: (value) {
+            controller.fetchF1Season(value);
+            controller.selectedSeason.value = value;
+          },
+          defaultItem: CoolDropdownItem(
+            label: controller.selectedSeason.value,
+            value: controller.selectedSeason.value,
+          ),
+          dropdownOptions: DropdownOptions(
+            padding: const EdgeInsets.all(10.0),
+            color: white,
+          ),
+          dropdownItemOptions: DropdownItemOptions(
+            render: DropdownItemRender.label,
+            selectedPadding: EdgeInsets.zero,
+            mainAxisAlignment: MainAxisAlignment.center,
+            selectedBoxDecoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: f1RedColor.withOpacity(0.7),
+                  width: 3,
+                ),
+              ),
+            ),
+            selectedTextStyle: TextStyle(
+                color: f1RedColor, fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+        ));
   }
 }
