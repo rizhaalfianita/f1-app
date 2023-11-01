@@ -14,13 +14,15 @@ class HomeController extends GetxController {
   final isLoadingUpcoming = true.obs;
   final dropdownController = DropdownController().obs;
   final selectedTab = 0.obs;
-  final selectedSeason = "".obs;
+  final selectedSeason = "2023".obs;
 
   final dummyF1Season = dummy2023.map((e) => F1Season.fromJson(e)).toList();
 
   @override
-  void onInit() async {
-    fetchF1AllSeason();
+  Future<void> onInit() async {
+    print("init home controller");
+    await fetchF1AllSeason();
+    print("fetching F1AllSeason done");
     super.onInit();
   }
 
@@ -28,7 +30,7 @@ class HomeController extends GetxController {
     selectedTab.value = tabIndex;
   }
 
-  void fetchF1AllSeason() async {
+  Future<void> fetchF1AllSeason() async {
     try {
       isLoading.value = true;
       var res = await F1Service.getAllSeason();
