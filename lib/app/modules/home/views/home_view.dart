@@ -54,7 +54,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                eventTracker(),
+                const EventTracker(),
                 const SizedBox(
                   height: 30,
                 ),

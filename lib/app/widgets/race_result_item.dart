@@ -1,4 +1,4 @@
-import 'package:f1_app/app/data/models/f1season_model.dart';
+import 'package:f1_app/app/data/model/f1season_model.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
