@@ -7,7 +7,7 @@ import 'package:f1_app/app/data/model/f1upcoming_model.dart';
 
 class F1Service {
   static var baseUrl = "https://f1scrapperapi.onrender.com/";
-  static var seasonUrl = "${baseUrl}season/";
+  static var seasonUrl = "${baseUrl}season";
   static var allSeasonUrl = "https://f1scrapperapi.onrender.com/all-season";
   static var upcomingUrl = "https://f1scrapperapi.onrender.com/upcoming";
   static var dio = Dio();

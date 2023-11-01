@@ -54,7 +54,7 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                const EventTracker(),
+                // const EventTracker(),
                 const SizedBox(
                   height: 30,
                 ),
@@ -74,7 +74,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 const SizedBox(height: 10),
                 DefaultTabController(
-                    length: controller.dummyF1Season.length,
+                    length: controller.season.length,
                     child: Column(
                       children: [
                         TabBar(

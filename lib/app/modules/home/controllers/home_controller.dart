@@ -17,10 +17,11 @@ class HomeController extends GetxController {
   final dummyF1Season = dummy2023.map((e) => F1Season.fromJson(e)).toList();
 
   @override
-void onInit() async {
+  void onInit() async {
     fetchF1AllSeason();
     fetchF1Upcoming();
     selectedSeason.value = "2023";
+    fetchF1Season(selectedSeason.value);
     super.onInit();
   }
 
