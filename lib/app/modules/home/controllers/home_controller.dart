@@ -2,6 +2,7 @@ import 'package:cool_dropdown/controllers/dropdown_controller.dart';
 import 'package:f1_app/app/data/dummy/2023.dart';
 import 'package:f1_app/app/data/models/f1allseason_model.dart';
 import 'package:f1_app/app/data/models/f1season_model.dart';
+import 'package:f1_app/app/data/models/f1upcoming_model.dart';
 import 'package:f1_app/app/data/services/f1scrapperapi_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';

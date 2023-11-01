@@ -3,14 +3,13 @@
 import 'package:dio/dio.dart';
 import 'package:f1_app/app/data/models/f1allseason_model.dart';
 import 'package:f1_app/app/data/models/f1season_model.dart';
-import 'package:f1_app/app/data/model/f1allseason_model.dart';
-import 'package:f1_app/app/data/model/f1season_model.dart';
-import 'package:f1_app/app/data/model/f1upcoming_model.dart';
+import 'package:f1_app/app/data/models/f1upcoming_model.dart';
 
 class F1Service {
   static var baseUrl = "https://f1scrapperapi.onrender.com/";
   static var seasonUrl = "${baseUrl}season/";
   static var allSeasonUrl = "https://f1scrapperapi.onrender.com/all-season";
+  static var upcomingUrl = "https://f1scrapperapi.onrender.com/upcoming";
   static var dio = Dio();
 
   static Future<List<F1AllSeason>?> getAllSeason() async {

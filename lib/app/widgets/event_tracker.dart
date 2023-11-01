@@ -9,122 +9,121 @@ class EventTracker extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.isLoadingUpcoming.value
-        ? const Center(child: CircularProgressIndicator())
-        : Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-            height: 130,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color(0xFF171717),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Upcoming",
-                        style: bodyMedium(white, FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        controller.upcoming.value.date!,
-                        style: bodySmall(white, FontWeight.normal),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+      height: 130,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color(0xFF171717),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Obx(() => controller.isLoadingUpcoming.value ? CircularProgressIndicator() : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(
-                            controller.upcoming.value.image!,
-                            width: 50,
-                            height: 50,
+                          Text(
+                            "Upcoming",
+                            style: bodyMedium(white, FontWeight.bold),
                           ),
                           const SizedBox(
-                            width: 10,
+                            height: 8,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Text(
+                            controller.upcoming.value.date!,
+                            style: bodySmall(white, FontWeight.normal),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Row(
                             children: [
-                              Text(
-                                controller.upcoming.value.title!.split(" ")[0],
-                                style:
-                                    customTextStyle(16, white, FontWeight.bold),
+                              Image.asset(
+                                controller.upcoming.value.image!,
+                                width: 50,
+                                height: 50,
                               ),
                               const SizedBox(
-                                height: 6,
+                                width: 10,
                               ),
-                              Text(
-                                controller.upcoming.value.title!.split(" ")[1],
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    foreground: Paint()
-                                      ..style = PaintingStyle.stroke
-                                      ..strokeWidth = 1.0
-                                      ..color = white),
-                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller.upcoming.value.title!
+                                        .split(" ")[0],
+                                    style: customTextStyle(
+                                        16, white, FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    controller.upcoming.value.title!
+                                        .split(" ")[1],
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        foreground: Paint()
+                                          ..style = PaintingStyle.stroke
+                                          ..strokeWidth = 1.0
+                                          ..color = white),
+                                  ),
+                                ],
+                              )
                             ],
                           )
                         ],
-                      )
+                      ),
+              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1F754C),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "PRACTICE 3",
+                    style: bodySmall(white, FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    height: 1,
+                    width: double.infinity,
+                    color: white,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      eventTrackerCount("00", "DAYS"),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      eventTrackerCount("08", "HRS"),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      eventTrackerCount("43", "MINS"),
                     ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1F754C),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          "PRACTICE 3",
-                          style: bodySmall(white, FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Container(
-                          height: 1,
-                          width: double.infinity,
-                          color: white,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            eventTrackerCount("00", "DAYS"),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            eventTrackerCount("08", "HRS"),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            eventTrackerCount("43", "MINS"),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ));
+          )
+        ],
+      ),
+    );
   }
 }
 
