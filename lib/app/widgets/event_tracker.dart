@@ -132,8 +132,8 @@ class EventTracker extends GetView<HomeController> {
                           fontWeight: FontWeight.bold),
                       onTick: (Duration duration) async {
                         final now = DateTime.now();
-                        if (now.hour == 16 &&
-                            now.minute == 04 &&
+                        if (now.hour == 21 &&
+                            now.minute == 16 &&
                             now.second == 00) {
                           LocalNotifications.showSimpleNotification(
                               title: "Upcoming Race",
