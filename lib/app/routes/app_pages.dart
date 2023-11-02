@@ -1,3 +1,4 @@
+
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';

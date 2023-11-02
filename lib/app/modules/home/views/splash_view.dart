@@ -14,7 +14,6 @@ class SplashView extends GetView {
     });
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Center(
         child: Shimmer(
           duration: const Duration(seconds: 2),
