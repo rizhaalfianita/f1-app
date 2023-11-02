@@ -1,6 +1,7 @@
 import 'package:f1_app/app/modules/home/controllers/home_controller.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +12,7 @@ class EventTracker extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      height: 130,
+      height: 140,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xFF171717),
@@ -21,62 +22,73 @@ class EventTracker extends GetView<HomeController> {
         children: [
           Expanded(
             flex: 1,
-            child: Obx(() => controller.isLoadingUpcoming.value ? CircularProgressIndicator() : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Upcoming",
-                            style: bodyMedium(white, FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            controller.upcoming.value.date!,
-                            style: bodySmall(white, FontWeight.normal),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              Image.asset(
-                                controller.upcoming.value.image!,
-                                width: 50,
-                                height: 50,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    controller.upcoming.value.title!
-                                        .split(" ")[0],
-                                    style: customTextStyle(
-                                        16, white, FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  Text(
-                                    controller.upcoming.value.title!
-                                        .split(" ")[1],
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        foreground: Paint()
-                                          ..style = PaintingStyle.stroke
-                                          ..strokeWidth = 1.0
-                                          ..color = white),
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-              ),
+            child: Obx(
+              () => controller.isLoadingUpcoming.value
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          color: f1RedColor,
+                        ),
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Upcoming",
+                          style: bodyMedium(white, FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          controller.upcoming.value.date!,
+                          style: bodySmall(white, FontWeight.normal),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Image.network(
+                              controller.upcoming.value.image!,
+                              width: 50,
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.upcoming.value.title!
+                                      .split(" ")[0],
+                                  style: customTextStyle(
+                                      16, white, FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  controller.upcoming.value.title!
+                                      .split(" ")[1],
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      foreground: Paint()
+                                        ..style = PaintingStyle.stroke
+                                        ..strokeWidth = 1.0
+                                        ..color = white),
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+            ),
           ),
           Expanded(
             flex: 1,
@@ -89,7 +101,7 @@ class EventTracker extends GetView<HomeController> {
               child: Column(
                 children: [
                   Text(
-                    "PRACTICE 3",
+                    "PRACTICE 1",
                     style: bodySmall(white, FontWeight.bold),
                   ),
                   const SizedBox(
@@ -103,20 +115,68 @@ class EventTracker extends GetView<HomeController> {
                   const SizedBox(
                     height: 8,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      eventTrackerCount("00", "DAYS"),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      eventTrackerCount("08", "HRS"),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      eventTrackerCount("43", "MINS"),
-                    ],
-                  )
+                  TimerCountdown(
+                      format: CountDownTimerFormat.daysHoursMinutes,
+                      endTime: DateTime.now().add(controller.targetDate.value
+                          .difference(DateTime.now())),
+                      daysDescription: "DAYS",
+                      hoursDescription: "HRS",
+                      minutesDescription: "MINS",
+                      timeTextStyle:
+                          customTextStyle(14, white, FontWeight.normal),
+                      colonsTextStyle:
+                          customTextStyle(18, white, FontWeight.bold),
+                      descriptionTextStyle: GoogleFonts.titilliumWeb(
+                          fontSize: 8,
+                          color: white,
+                          fontWeight: FontWeight.bold),
+                      onTick: (Duration duration) {
+                        final now = DateTime.now();
+                        if (now.hour == 12 &&
+                            now.minute == 09 &&
+                            now.second == 00) {
+                          Future.delayed(const Duration(milliseconds: 100), () {
+                            Get.dialog(
+                              GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: AlertDialog(
+                                  title: const Text('New Day'),
+                                  content: Text(
+                                    'A new day has begun! Remaining days: ${duration.inDays}',
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
+                        }
+                      },
+                      onEnd: () {
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          Get.dialog(
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: AlertDialog(
+                                title: const Text('Timer'),
+                                content: const Text(
+                                  'Time is up!',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text("Okay"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                      }),
                 ],
               ),
             ),

@@ -35,50 +35,49 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: const EdgeInsets.all(24.0),
+              child: Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      "assets/images/f1_logo.png",
+                    const SizedBox(
                       height: 20,
-                      color: white,
                     ),
-                    Icon(Icons.notifications, color: white),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const EventTracker(),
-                const SizedBox(
-                  height: 30,
-                ),
-                controller.isLoading.value
-                    ? Center(
-                        child: CircularProgressIndicator(
-                        color: f1RedColor,
-                      ))
-                    : dropdownSeason(),
-                const SizedBox(height: 10),
-                Obx(() =>
-                    controller.season.value[controller.selectedSeason.value] ==
-                            null
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          "assets/images/f1_logo.png",
+                          height: 20,
+                          color: white,
+                        ),
+                        Icon(Icons.notifications, color: white),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const EventTracker(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    controller.isLoading.value
+                        ? Center(
+                            child: CircularProgressIndicator(
+                            color: f1RedColor,
+                          ))
+                        : dropdownSeason(),
+                    const SizedBox(height: 10),
+                    controller.isLoadingSeason.value
                         ? Center(
                             child: CircularProgressIndicator(
                               color: f1RedColor,
                             ),
                           )
-                        : raceResult(size))
-              ],
-            ),
-          ),
+                        : raceResult(size)
+                  ],
+                ),
+              )),
         ]),
       ),
     );
@@ -104,7 +103,7 @@ class HomeView extends GetView<HomeController> {
               }).toList(),
             ),
             SizedBox(
-              height: size.height * 2.7,
+              height: size.height * 2.9,
               child: TabBarView(
                   physics: const NeverScrollableScrollPhysics(),
                   children: controller

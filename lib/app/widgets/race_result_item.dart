@@ -12,10 +12,10 @@ Widget raceResultItem(F1Season f1season) {
       ),
       Text(
         "Race details",
-        style: bodyMedium(softBlack, FontWeight.bold),
+        style: bodyLarge(softBlack, FontWeight.bold),
       ),
       const SizedBox(
-        height: 12,
+        height: 10,
       ),
       Text(
         f1season.race!.date!,

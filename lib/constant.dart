@@ -46,10 +46,11 @@ TextStyle bodyMedium(Color color, FontWeight fontWeight) {
 }
 
 TextStyle bodyLarge(Color color, FontWeight fontWeight) {
-  return TextStyle(
-    fontFamily: "F1",
-    fontSize: 16,
-    fontWeight: fontWeight,
-    color: color,
+  return GoogleFonts.titilliumWeb(
+    textStyle: TextStyle(
+      fontSize: 16,
+      fontWeight: fontWeight,
+      color: color,
+    ),
   );
 }
