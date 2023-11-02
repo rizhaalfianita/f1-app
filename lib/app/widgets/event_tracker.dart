@@ -1,4 +1,5 @@
 import 'package:f1_app/app/modules/home/controllers/home_controller.dart';
+import 'package:f1_app/app/notifications/local_notifications.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
@@ -18,11 +19,7 @@ class EventTracker extends GetView<HomeController> {
         color: const Color(0xFF171717),
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Obx(
+      child: Obx(
               () => controller.isLoadingUpcoming.value
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +30,11 @@ class EventTracker extends GetView<HomeController> {
                         ),
                       ],
                     )
-                  : Column(
+                  : Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -89,7 +90,6 @@ class EventTracker extends GetView<HomeController> {
                       ],
                     ),
             ),
-          ),
           Expanded(
             flex: 1,
             child: Container(
@@ -130,26 +130,16 @@ class EventTracker extends GetView<HomeController> {
                           fontSize: 8,
                           color: white,
                           fontWeight: FontWeight.bold),
-                      onTick: (Duration duration) {
+                      onTick: (Duration duration) async {
                         final now = DateTime.now();
-                        if (now.hour == 12 &&
-                            now.minute == 09 &&
+                        if (now.hour == 16 &&
+                            now.minute == 04 &&
                             now.second == 00) {
-                          Future.delayed(const Duration(milliseconds: 100), () {
-                            Get.dialog(
-                              GestureDetector(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: AlertDialog(
-                                  title: const Text('New Day'),
-                                  content: Text(
-                                    'A new day has begun! Remaining days: ${duration.inDays}',
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
+                          LocalNotifications.showSimpleNotification(
+                              title: "Upcoming Race",
+                              body:
+                                  "${controller.targetDate.value.difference(DateTime.now()).inDays} days left!",
+                              payload: "This is sample data");
                         }
                       },
                       onEnd: () {
@@ -159,19 +149,12 @@ class EventTracker extends GetView<HomeController> {
                               onTap: () {
                                 Get.back();
                               },
-                              child: AlertDialog(
-                                title: const Text('Timer'),
-                                content: const Text(
+                              child: const AlertDialog(
+                                title: Text('Timer'),
+                                content: Text(
                                   'Time is up!',
                                 ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text("Okay"),
-                                  ),
-                                ],
+                                
                               ),
                             ),
                           );
@@ -183,6 +166,7 @@ class EventTracker extends GetView<HomeController> {
           )
         ],
       ),
+      )
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
+import 'package:f1_app/app/preferences/theme_settings.dart';
 import 'package:f1_app/app/widgets/event_tracker.dart';
 import 'package:f1_app/app/widgets/race_result_item.dart';
 import 'package:f1_app/constant.dart';
@@ -14,70 +15,126 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var themeController = Get.put(ThemeController());
+
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(children: [
-          // gradient background
-          Container(
-            height: Get.height * 0.5,
-            width: Get.width,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                stops: const [0.15, 1],
-                colors: [
-                  f1RedColor,
-                  white,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+          Obx(
+            () => Container(
+              height: Get.height * 0.5,
+              width: Get.width,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  stops: const [0.15, 1],
+                  colors: [
+                    f1RedColor,
+                    themeController.isDarkMode.value
+                        ? ThemeData.dark().canvasColor
+                        : ThemeData.light().canvasColor,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
             ),
           ),
           Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Obx(
-                () => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(
+                    Image.asset(
+                      "assets/images/f1_logo.png",
                       height: 20,
+                      color: white,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "assets/images/f1_logo.png",
-                          height: 20,
-                          color: white,
-                        ),
-                        Icon(Icons.notifications, color: white),
-                      ],
+                    GetBuilder<ThemeController>(
+                      builder: (themeController) {
+                        return PopupMenuButton(
+                            color: white,
+                            itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                      onTap: () {},
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.notifications,
+                                            color: f1RedColor,
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            "Notifications",
+                                            style: bodyMedium(
+                                                softBlack, FontWeight.normal),
+                                          ),
+                                        ],
+                                      )),
+                                  PopupMenuItem(
+                                      onTap: () {
+                                        themeController.toggleTheme();
+                                        print("PRINTTTT");
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.dark_mode,
+                                            color: f1RedColor,
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            "Change theme",
+                                            style: bodyMedium(
+                                                softBlack, FontWeight.normal),
+                                          ),
+                                        ],
+                                      ))
+                                ]);
+                      },
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const EventTracker(),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    controller.isLoading.value
-                        ? Center(
-                            child: CircularProgressIndicator(
-                            color: f1RedColor,
-                          ))
-                        : dropdownSeason(),
-                    const SizedBox(height: 10),
-                    controller.isLoadingSeason.value
-                        ? Center(
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const EventTracker(),
+                const SizedBox(
+                  height: 30,
+                ),
+                Obx(() => controller.isLoading.value
+                    ? Center(
+                        child: CircularProgressIndicator(
+                        color: f1RedColor,
+                      ))
+                    : dropdownSeason()),
+                const SizedBox(height: 10),
+                Obx(() => controller.isLoadingSeason.value
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 200,
+                          ),
+                          Center(
                             child: CircularProgressIndicator(
                               color: f1RedColor,
                             ),
-                          )
-                        : raceResult(size)
-                  ],
-                ),
-              )),
+                          ),
+                        ],
+                      )
+                    : raceResult(size))
+              ],
+            ),
+          )
         ]),
       ),
     );
