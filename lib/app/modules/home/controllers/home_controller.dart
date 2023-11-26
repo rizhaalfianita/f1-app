@@ -7,8 +7,10 @@ import 'package:f1_app/app/data/services/f1scrapperapi_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final allSeasons = <F1AllSeason>[].obs;
   final RxMap<String, List<F1Season>?> season = <String, List<F1Season>?>{}.obs;
   final isLoading = true.obs;
@@ -18,10 +20,10 @@ class HomeController extends GetxController {
   final selectedSeason = "2023".obs;
   final upcoming = F1Upcoming().obs;
   final dialogOpen = false.obs;
-
   final targetDate = DateTime.now().obs;
 
   final dummyF1Season = dummy2023.map((e) => F1Season.fromJson(e)).toList();
+  final isLightTheme = true.obs;
 
   @override
   Future<void> onInit() async {
@@ -30,6 +32,8 @@ class HomeController extends GetxController {
     print("fetching F1AllSeason done");
     await fetchF1Upcoming();
     print("fetching upcoming done");
+    SharedPreferences prefs = await _prefs;
+    isLightTheme.value = prefs.getBool("isLightTheme") ?? true;
     super.onInit();
   }
 
@@ -83,5 +87,11 @@ class HomeController extends GetxController {
         print("Error while fetching : ${e}");
       }
     }
+  }
+
+  Future<void> changeTheme() async {
+    final SharedPreferences prefs = await _prefs;
+    isLightTheme.value = !isLightTheme.value;
+    prefs.setBool("isLightTheme", isLightTheme.value);
   }
 }
