@@ -19,7 +19,6 @@ class HomeController extends GetxController {
   final dropdownController = DropdownController().obs;
   final selectedSeason = "2023".obs;
   final upcoming = F1Upcoming().obs;
-  final dialogOpen = false.obs;
   final targetDate = DateTime.now().obs;
 
   final dummyF1Season = dummy2023.map((e) => F1Season.fromJson(e)).toList();
