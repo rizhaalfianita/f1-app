@@ -27,6 +27,7 @@ void main() async {
               theme: ThemeData.light(),
               darkTheme: ThemeData.dark(),
               home: child,
+              debugShowCheckedModeBanner: false,
             );
           });
         }),

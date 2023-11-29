@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/splash_view.dart';
+import '../modules/track_map/bindings/track_map_binding.dart';
+import '../modules/track_map/views/track_map_view.dart';
 
 part 'app_routes.dart';
 
@@ -28,6 +30,10 @@ class AppPages {
       name: _Paths.DETECTION,
       page: () => const DetectionView(),
       binding: HomeBinding(),
+    GetPage(
+      name: _Paths.TRACK_MAP,
+      page: () => const TrackMapView(),
+      binding: TrackMapBinding(),
     ),
   ];
 }

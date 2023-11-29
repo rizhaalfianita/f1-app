@@ -6,6 +6,7 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const HOME = _Paths.HOME;
   static const DETECTION = _Paths.DETECTION;
+  static const TRACK_MAP = _Paths.TRACK_MAP;
 }
 
 abstract class _Paths {
@@ -13,4 +14,5 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const HOME = '/home';
   static const DETECTION = '/detection';
+  static const TRACK_MAP = '/track-map';
 }
