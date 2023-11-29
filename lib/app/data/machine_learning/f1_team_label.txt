@@ -1,0 +1,10 @@
+alfaromeo
+alpha tauri
+alpine
+aston martin
+ferrari
+haas
+mclaren
+mercedes
+red bull
+williams

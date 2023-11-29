@@ -1,3 +1,4 @@
+import 'package:f1_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,8 +10,8 @@ class SplashView extends GetView {
   Widget build(BuildContext context) {
     // Delay for 5 seconds and then navigate to the home screen
     Future.delayed(const Duration(seconds: 6), () {
-      Get.offNamed(
-          '/home'); // Navigate to the home screen using GetX navigation
+      Get.off(
+          Routes.NAVBAR); // Navigate to the home screen using GetX navigation
     });
 
     return Scaffold(

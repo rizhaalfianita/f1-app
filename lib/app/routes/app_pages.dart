@@ -1,7 +1,8 @@
-
-import 'package:f1_app/app/modules/home/views/detection_view.dart';
+import 'package:f1_app/app/modules/home/views/navbar_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/detection/bindings/detection_binding.dart';
+import '../modules/detection/views/detection_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/splash_view.dart';
@@ -27,13 +28,19 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.DETECTION,
-      page: () => const DetectionView(),
+      name: _Paths.NAVBAR,
+      page: () => const NavbarView(),
       binding: HomeBinding(),
+    ),
     GetPage(
       name: _Paths.TRACK_MAP,
       page: () => const TrackMapView(),
       binding: TrackMapBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETECTION,
+      page: () => const DetectionView(),
+      binding: DetectionBinding(),
     ),
   ];
 }
