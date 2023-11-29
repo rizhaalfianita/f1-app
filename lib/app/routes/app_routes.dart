@@ -7,6 +7,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const TRACK_MAP = _Paths.TRACK_MAP;
   static const DETECTION = _Paths.DETECTION;
+  static const NAVBAR = _Paths.NAVBAR;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const TRACK_MAP = '/track-map';
   static const DETECTION = '/detection';
+  static const NAVBAR = '/navbar';
 }

@@ -1,3 +1,4 @@
+import 'package:f1_app/app/modules/home/views/navbar_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/detection/bindings/detection_binding.dart';
@@ -24,6 +25,11 @@ class AppPages {
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.NAVBAR,
+      page: () => const NavbarView(),
       binding: HomeBinding(),
     ),
     GetPage(

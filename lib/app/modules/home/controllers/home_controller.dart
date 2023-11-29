@@ -7,6 +7,7 @@ import 'package:f1_app/app/data/services/f1scrapperapi_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
@@ -23,6 +24,9 @@ class HomeController extends GetxController {
 
   final dummyF1Season = dummy2023.map((e) => F1Season.fromJson(e)).toList();
   final isLightTheme = true.obs;
+
+  final PersistentTabController navbarController =
+      PersistentTabController(initialIndex: 0);
 
   @override
   Future<void> onInit() async {
@@ -47,7 +51,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       if (kDebugMode) {
-        print("Error while fetching : ${e}");
+        print("Error while fetching : $e");
       }
     }
   }
@@ -55,7 +59,7 @@ class HomeController extends GetxController {
   void fetchF1Season(String year) async {
     try {
       isLoadingSeason.value = true;
-      print("fetching season ${year}");
+      print("fetching season $year");
       var season = await F1Service.getSeason(year);
       if (season != null) {
         this.season[year] = season;
@@ -65,7 +69,7 @@ class HomeController extends GetxController {
         isLoadingSeason.value = false;
       }
     } catch (e) {
-      print("Error while fetching : ${e}");
+      print("Error while fetching : $e");
     }
   }
 
@@ -83,7 +87,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       if (kDebugMode) {
-        print("Error while fetching : ${e}");
+        print("Error while fetching : $e");
       }
     }
   }

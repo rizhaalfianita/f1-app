@@ -19,7 +19,7 @@ class LocalNotifications {
       onDidReceiveLocalNotification: (id, title, body, payload) => null,
     );
     final LinuxInitializationSettings initializationSettingsLinux =
-        LinuxInitializationSettings(defaultActionName: 'Open notification');
+        const LinuxInitializationSettings(defaultActionName: 'Open notification');
     final InitializationSettings initializationSettings =
         InitializationSettings(
             android: initializationSettingsAndroid,
