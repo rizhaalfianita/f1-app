@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:f1_app/app/data/models/f1allseason_model.dart';
+import 'package:f1_app/app/data/models/f1circuit_model.dart';
 import 'package:f1_app/app/data/models/f1season_model.dart';
 import 'package:f1_app/app/data/models/f1upcoming_model.dart';
 
@@ -38,6 +39,16 @@ class F1Service {
     if (res.statusCode == 200) {
       var upcoming = res.data;
       return F1Upcoming.fromJson(upcoming);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<List<Circuit>?> getAllCircuit() async {
+    var res = await dio.get("${baseUrl}circuit");
+    if (res.statusCode == 200) {
+      var circuits = res.data as List;
+      return circuits.map((e) => Circuit.fromJson(e)).toList();
     } else {
       return null;
     }
