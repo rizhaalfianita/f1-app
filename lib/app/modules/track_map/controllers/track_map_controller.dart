@@ -45,7 +45,7 @@ class TrackMapController extends GetxController
       }
     } catch (e) {
       if (kDebugMode) {
-        print("Error while fetching : ${e}");
+        print("Error while fetching : $e");
       }
     }
   }
@@ -62,7 +62,7 @@ class TrackMapController extends GetxController
 
     // Create a animation controller that has a duration and a TickerProvider.
     final controller =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+        AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
     // The animation determines what path the animation will take. You can try different Curves values, although I found
     // fastOutSlowIn to be my favorite.
     final Animation<double> animation =
