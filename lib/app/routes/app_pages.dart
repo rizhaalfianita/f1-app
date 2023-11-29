@@ -1,3 +1,4 @@
+
 import 'package:f1_app/app/modules/home/views/detection_view.dart';
 import 'package:get/get.dart';
 
