@@ -30,15 +30,15 @@ class Circuit {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['image'] = this.image;
-    data['lang'] = this.lang;
-    data['lap_record'] = this.lapRecord;
-    data['lap_record_driver'] = this.lapRecordDriver;
-    data['lat'] = this.lat;
-    data['length'] = this.length;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['country'] = country;
+    data['image'] = image;
+    data['lang'] = lang;
+    data['lap_record'] = lapRecord;
+    data['lap_record_driver'] = lapRecordDriver;
+    data['lat'] = lat;
+    data['length'] = length;
+    data['name'] = name;
     return data;
   }
 }
