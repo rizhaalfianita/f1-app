@@ -9,6 +9,7 @@ import '../controllers/track_map_controller.dart';
 
 class TrackMapView extends GetView<TrackMapController> {
   const TrackMapView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,8 @@ class TrackMapView extends GetView<TrackMapController> {
   }
 
   Widget cardSection() {
-    return Obx(() => SizedBox(
+    return Obx(() => Container(
+          margin: EdgeInsets.only(bottom: 15),
           height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
