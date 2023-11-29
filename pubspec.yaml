@@ -40,8 +40,19 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/machine_learning/
+    - assets/images/alfaromeo.png
+    - assets/images/alphatauri.png
+    - assets/images/astonmartin.jpg
+    - assets/images/ferrari.png
+    - assets/images/haas.png
+    - assets/images/mclaren.png
+    - assets/images/mercedes.png
+    - assets/images/redbull.png
+    - assets/images/william.png
     - assets/images/sample_track.png
+    - assets/images/
+
   fonts:
     - family: F1
       fonts:

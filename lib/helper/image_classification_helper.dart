@@ -30,8 +30,8 @@ class ImageClassificationHelper {
   // static const labelsPath = 'assets/models/labels.txt';
 
   static const modelPath =
-      'assets/models/f1_team_classification_colab_h5.tflite';
-  static const labelsPath = 'assets/models/f1_team_label.txt';
+      'assets/machine_learning/f1_team_classification_colab_h5.tflite';
+  static const labelsPath = 'assets/machine_learning/f1_team_label.txt';
 
   late final Interpreter interpreter;
   late final List<String> labels;
