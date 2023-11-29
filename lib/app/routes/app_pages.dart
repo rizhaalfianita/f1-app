@@ -1,3 +1,5 @@
+
+import 'package:f1_app/app/modules/home/views/detection_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -24,6 +26,10 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
+    GetPage(
+      name: _Paths.DETECTION,
+      page: () => const DetectionView(),
+      binding: HomeBinding(),
     GetPage(
       name: _Paths.TRACK_MAP,
       page: () => const TrackMapView(),

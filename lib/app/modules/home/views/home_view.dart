@@ -149,7 +149,7 @@ class HomeView extends GetView<HomeController> {
               isScrollable: true,
               labelPadding: const EdgeInsets.only(right: 30.0),
               labelColor: f1RedColor,
-              unselectedLabelColor: extraLightF1Red,
+              unselectedLabelColor: darkF1Red,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorColor: f1RedColor,
               tabs:
