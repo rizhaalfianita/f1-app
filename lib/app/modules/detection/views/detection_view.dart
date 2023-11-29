@@ -1,10 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:f1_app/constant.dart';
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetectionView extends StatelessWidget {
-  const DetectionView({super.key});
+import '../controllers/detection_controller.dart';
+
+class DetectionView extends GetView<DetectionController> {
+  const DetectionView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
