@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:f1_app/helper/image_classification_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DetectionController extends GetxController with WidgetsBindingObserver {
   var cameraController = Rx<CameraController?>(null);
@@ -13,6 +15,9 @@ class DetectionController extends GetxController with WidgetsBindingObserver {
   RxBool isProcessing = false.obs;
 
   bool cameraIsAvailable = Platform.isAndroid || Platform.isIOS;
+  final ImagePicker picker = ImagePicker();
+  // var pickedFile = Rx<File?>(null);
+  Rx<File?> pickedImage = Rx<File?>(null);
 
   initCamera() async {
     if (cameraIsAvailable) {
@@ -61,5 +66,25 @@ class DetectionController extends GetxController with WidgetsBindingObserver {
     cameraController.value!.dispose();
     imageClassificationHelper.value!.close();
     super.onClose();
+  }
+
+  Future getFromGallery() async {
+    try {
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      pickedImage.value = File(image.path);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future getFromCamera() async {
+    try {
+      final XFile? image = await picker.pickImage(source: ImageSource.camera);
+      if (image == null) return;
+      pickedImage.value = File(image.path);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
   }
 }

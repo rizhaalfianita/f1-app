@@ -14,7 +14,7 @@ class NavbarView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      screens: const [HomeView(), TrackMapView(), LivecamView()],
+      screens: const [HomeView(), TrackMapView(), DetectionView()],
       controller: controller.navbarController,
       navBarStyle: NavBarStyle.style9,
       decoration: const NavBarDecoration(
