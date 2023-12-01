@@ -1,4 +1,4 @@
-import 'package:f1_app/app/modules/detection/views/detection_view.dart';
+import 'package:f1_app/app/modules/detection/views/livecam_view.dart';
 import 'package:f1_app/app/modules/home/controllers/home_controller.dart';
 import 'package:f1_app/app/modules/home/views/home_view.dart';
 import 'package:f1_app/app/modules/track_map/views/track_map_view.dart';
@@ -13,7 +13,7 @@ class NavbarView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      screens: const [HomeView(), TrackMapView(), DetectionView()],
+      screens: const [HomeView(), TrackMapView(), LivecamView()],
       controller: controller.navbarController,
       navBarStyle: NavBarStyle.style9,
       decoration: const NavBarDecoration(
