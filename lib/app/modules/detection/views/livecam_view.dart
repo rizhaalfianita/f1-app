@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:camera/camera.dart';
 import 'package:f1_app/app/modules/detection/controllers/detection_controller.dart';
 import 'package:f1_app/constant.dart';
@@ -31,13 +29,6 @@ class LivecamView extends GetView<DetectionController>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('F1 Car Team Detection',
-              style: GoogleFonts.titilliumWeb(
-                  fontSize: 20, fontWeight: FontWeight.bold)),
-          backgroundColor: f1RedColor,
-          centerTitle: true,
-        ),
         body: Stack(
           children: [
             cameraWidget(context),
@@ -165,13 +156,13 @@ class LivecamView extends GetView<DetectionController>
           Text(
             team,
             style: GoogleFonts.titilliumWeb(
-                fontSize: 20, fontWeight: FontWeight.bold),
+                fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const Spacer(),
           Text(
             "${(value * 100).toStringAsFixed(2)}%",
             style: GoogleFonts.titilliumWeb(
-                fontSize: 20, fontWeight: FontWeight.bold),
+                fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),
