@@ -1,4 +1,5 @@
 import 'package:f1_app/app/modules/detection/views/detection_view.dart';
+import 'package:f1_app/app/modules/detection/views/livecam_view.dart';
 import 'package:f1_app/app/modules/home/controllers/home_controller.dart';
 import 'package:f1_app/app/modules/home/views/home_view.dart';
 import 'package:f1_app/app/modules/track_map/views/track_map_view.dart';
@@ -13,12 +14,12 @@ class NavbarView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      screens: [const HomeView(), const TrackMapView(), const DetectionView()],
+      screens: const [HomeView(), TrackMapView(), LivecamView()],
       controller: controller.navbarController,
       navBarStyle: NavBarStyle.style9,
-      decoration: NavBarDecoration(
+      decoration: const NavBarDecoration(
         //  rounded jus in top
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
             topLeft: Radius.circular(8), topRight: Radius.circular(8)),
         colorBehindNavBar: Colors.white,
       ),

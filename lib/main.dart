@@ -1,3 +1,4 @@
+import 'package:f1_app/app/modules/detection/controllers/detection_controller.dart';
 import 'package:f1_app/app/modules/track_map/controllers/track_map_controller.dart';
 import 'package:f1_app/app/notifications/local_notifications.dart';
 import 'package:f1_app/app/preferences/theme_settings.dart';
@@ -9,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalNotifications.init();
   Get.put(TrackMapController());
+  Get.put(DetectionController());
   runApp(
     GetMaterialApp(
         debugShowCheckedModeBanner: false,
