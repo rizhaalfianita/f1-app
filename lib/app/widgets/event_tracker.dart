@@ -129,7 +129,7 @@ class EventTracker extends GetView<HomeController> {
                                 colonsTextStyle:
                                     customTextStyle(18, white, FontWeight.bold),
                                 descriptionTextStyle: GoogleFonts.titilliumWeb(
-                                    fontSize: 8,
+                                    fontSize: 7,
                                     color: white,
                                     fontWeight: FontWeight.bold),
                                 onTick: (Duration duration) async {

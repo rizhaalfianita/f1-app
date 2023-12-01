@@ -21,8 +21,8 @@ class TrackMapView extends GetView<TrackMapController> {
 
   Widget cardSection() {
     return Obx(() => Container(
-          margin: EdgeInsets.only(bottom: 15),
-          height: 150,
+          margin: const EdgeInsets.only(bottom: 15),
+          height: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: controller.isLoadingCircuit.value
@@ -50,7 +50,7 @@ class TrackMapView extends GetView<TrackMapController> {
         });
       },
       child: Container(
-        width: 300,
+        padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.all(12),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -59,106 +59,104 @@ class TrackMapView extends GetView<TrackMapController> {
               BoxShadow(
                   color: Colors.black26, offset: Offset(0, 2), blurRadius: 6.0)
             ]),
-        child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.network(
+                    circuit.image!,
+                    height: 60,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.error);
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        circuit.name!,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        circuit.country!,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                      ),
-                      child: Image.network(
-                        circuit.image!,
-                        height: 60,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Icon(Icons.error);
-                        },
-                      ),
+                    const Text(
+                      "Circuit Length",
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(
-                      width: 10,
+                    Text(
+                      "${circuit.length!} km",
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Lap Record",
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                      Row(
                         children: [
                           Text(
-                            circuit.name!,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                            "${circuit.lapRecord!} ",
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            circuit.country!,
+                            circuit.lapRecordDriver!,
+                            maxLines: 2,
                             style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Circuit Length",
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          "${circuit.length!} km",
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Lap Record",
-                            style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w500),
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                "${circuit.lapRecord!} ",
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                circuit.lapRecordDriver!,
-                                maxLines: 2,
-                                style: const TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          )
                         ],
-                      ),
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  ),
+                )
               ],
-            )),
+            ),
+          ],
+        ),
       ),
     );
   }

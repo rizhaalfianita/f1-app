@@ -16,9 +16,9 @@ class NavbarView extends GetView<HomeController> {
       screens: const [HomeView(), TrackMapView(), DetectionView()],
       controller: controller.navbarController,
       navBarStyle: NavBarStyle.style9,
-      decoration: NavBarDecoration(
+      decoration: const NavBarDecoration(
         //  rounded jus in top
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
             topLeft: Radius.circular(8), topRight: Radius.circular(8)),
         colorBehindNavBar: Colors.white,
       ),
