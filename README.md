@@ -1,16 +1,17 @@
-# f1_app
+# F1 App
 
-A new Flutter project.
+<p align="center">
+	<img src="assets/images/f1_home.jpg" width="25%"> &nbsp; &nbsp; &nbsp;
+	<img src="assets/images/f1_maps.jpg" width="25%"> &nbsp; &nbsp; &nbsp;
+	<img src="assets/images/f1_ml.jpg" width="25%">
+</p>
 
-## Getting Started
+## Contributors
 
-This project is a starting point for a Flutter application.
+- Fahrendra Khoirul Ihtada ([@fahrendrakhoirul](https://github.com/FahrendraKhoirul))
+- Rizha Alfianita ([@rizhaalfianita](https://github.com/rizhaalfianita))
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## License
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is licensed under the MIT License - see the [MIT LICENSE](https://choosealicense.com/licenses/mit/) file for details.
